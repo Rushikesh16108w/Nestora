@@ -1,31 +1,67 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-    <div class="row mt-3">
-        <div class="col-8 offset-3">
-    <h3>Listing Details</h3>
-    </div>
-        <div class="card col-6 offset-3 show-card">
-        <img src="<%= listing.image %>" class="card-img-top show-img" alt=".listing_image">
-        <div class="card-body">
-        <p class="card-text">
-            <b><%= listing.title %></b> <br>
-            <%= listing.description %> <br> 
-            &#8377 <%=  listing.price.toLocaleString("en-IN") %> <br>
-            <%= listing.location %> <br>
-            <%= listing.country %> 
-        </p>
-    </div>
-    </div>
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <!-- Title -->
+        <h2 class="fw-bold text-center mb-4 text-success">
+          <i class="fa-solid fa-map-location-dot"></i> Listing Details
+        </h2>
 
-    <br>
-    <div class="btns">
-        <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit</a>
-    
-    
-        <form method="POST" action="/listings/<%= listing._id %>?_method=Delete">
-        <button class="btn btn-dark offset-5">Delete</button>
-        </form>
+        <!-- Card -->
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden show-card">
+          <!-- Image -->
+          <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing_image" 
+               style="height: 22rem; object-fit: cover;">
+          
+          <!-- Card Body -->
+          <div class="card-body p-4">
+            <h3 class="fw-bold text-dark"><%= listing.title %></h3>
+            <p class="text-muted mb-3"><%= listing.location %>, <%= listing.country %></p>
+
+            <p class="card-text fs-5">
+              <%= listing.description %>
+            </p>
+
+            <!-- Price Badge -->
+            <span class="badge bg-success fs-6 px-3 py-2">
+              ₹<%= listing.price.toLocaleString("en-IN") %> / night
+            </span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-between mt-4">
+          <a href="/listings/<%= listing._id %>/edit" 
+             class="btn btn-outline-primary px-4 py-2 fw-semibold shadow-sm edit-btn">
+            <i class="fa-solid fa-pen-to-square"></i> Edit
+          </a>
+
+          <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+            <button class="btn btn-outline-danger px-4 py-2 fw-semibold shadow-sm">
+              <i class="fa-solid fa-trash"></i> Delete
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-    
-    </div>
+  </div>
+
+  <!-- Extra CSS -->
+  <style>
+    .show-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .show-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.15);
+    }
+    .btn {
+      transition: all 0.3s ease;
+      border-radius: 0.6rem;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+  </style>
 </body>

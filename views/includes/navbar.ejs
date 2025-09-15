@@ -1,15 +1,30 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<!-- Navbar (Search Icon Only) -->
+<nav class="navbar navbar-expand-md sticky-top bg-white shadow-sm py-2">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-regular fa-house"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link" href="/listings">All listing</a>
-        <a class="nav-link" href="/listing/new">Add new listing</a>
-      </div>
+    <a class="navbar-brand fw-bold fs-4 text-danger" href="/listings">
+      <i class="fa-solid fa-house-chimney me-2"></i> Nestora
+    </a>
+
+    <div class="ms-auto d-flex align-items-center">
+      <a class="nav-link text-dark fw-semibold me-3" href="/listings">All Listings</a>
+      <a class="nav-link text-dark fw-semibold me-3" href="/listing/new">Add New</a>
+
+      <!-- Search Icon -->
+      <button class="btn btn-light rounded-circle shadow-sm" data-bs-toggle="modal" data-bs-target="#searchModal">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- Search Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-3 rounded-4 shadow-lg">
+      <form method="GET" action="/listings">
+        <input type="text" class="form-control form-control-lg rounded-pill shadow-sm px-4"
+               name="q" placeholder="🔍 Search destinations, listings, countries...">
+      </form>
+    </div>
+  </div>
+</div>

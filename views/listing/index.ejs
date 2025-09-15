@@ -1,24 +1,104 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-    <h3>All Listing</h3>
-    <!-- <form method="GET" action="/listing/new">
-        <button>Create new listing</button>
-    </form> --> 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ">
-    <% for(let listing of allListing){ %>
-    <a href="/listings/<%= listing._id %>" class="listing-link">
-    <div class="card col">
-    <img src="<%= listing.image %>" class="card-img-top" alt="listing_image" style="height:20rem" />
-    <div class="card-img-overlay"></div>
-    <div class="card-body">
-    <p class="card-text">
-       <b><%= listing.title %> <br></b>
-        &#8377 <%=  listing.price.toLocaleString("en-IN") %> / night
-    </p>
-    </div>
-    </div>
-    </a>
-   <% } %>
- </div>
-</body>
+  <div class="container my-5">
 
+    <!-- Creative Heading -->
+    <div class="text-center mb-5">
+      <h1 class="fw-bold display-5 gradient-text animate__animated animate__fadeInDown">
+        <i class="fa-solid fa-compass me-2"></i> Explore Amazing Stays
+      </h1>
+      <p class="text-muted">Find your perfect getaway from our curated listings ✨</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-8">
+        <form method="GET" action="/listings" class="d-flex search-bar shadow-sm rounded-pill overflow-hidden">
+          <input 
+            class="form-control border-0 rounded-start-pill px-4 py-2 search-input" 
+            type="text" 
+            name="q" 
+            placeholder="🔍 Search by title, country, or location..."
+            aria-label="Search">
+          <button class="btn btn-success rounded-end-pill px-4 fw-semibold">Search</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Listings Grid -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 animate__animated animate__fadeInUp">
+      <% for(let listing of allListing){ %>
+        <div class="col">
+          <a href="/listings/<%= listing._id %>" class="listing-link text-decoration-none">
+            <div class="card listing-card shadow-sm border-0 rounded-4 h-100">
+              <div class="image-container">
+                <img src="<%= listing.image %>" class="card-img-top rounded-top-4" 
+                     alt="listing_image" style="height: 18rem; object-fit: cover;">
+                <div class="overlay">
+                  <span class="price-badge">
+                    ₹<%= listing.price.toLocaleString("en-IN") %> / night
+                  </span>
+                </div>
+              </div>
+              <div class="card-body text-center">
+                <h5 class="card-title text-dark fw-bold"><%= listing.title %></h5>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- CSS -->
+  <style>
+    .gradient-text {
+      background: linear-gradient(90deg, #00c851, #33b5e5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .search-bar {
+      transition: all 0.3s ease;
+    }
+    .search-input:focus {
+      box-shadow: 0 0 15px rgba(0, 200, 81, 0.6);
+    }
+    .listing-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .listing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    .image-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem 1rem 0 0;
+    }
+    .image-container img {
+      transition: transform 0.5s ease;
+    }
+    .image-container:hover img {
+      transform: scale(1.08);
+    }
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.6rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    }
+    .price-badge {
+      background: #00c851;
+      color: white;
+      font-weight: bold;
+      padding: 0.3rem 0.8rem;
+      border-radius: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+
+  <!-- Animate.css for smooth animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</body>

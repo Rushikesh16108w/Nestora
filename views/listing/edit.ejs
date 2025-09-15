@@ -1,43 +1,95 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-    <div class="row mt-3" >
-        <div class="col-8 offset-2">
-    <h3>Edit your Listing</h3>
-    <form method="post" action="/listings/<%= listing._id%>?_method=PUT">
-        <div class="mb-3">
-        <label for="title" class="form-lable"><title></title></label>
-        <input name="listing[title]" value="<%=listing.title%>" type="text" class="form-control">
-        </div>
-    
-        <div class="mb-3">
-        <label for="description" class="form-lable">description</label>
-        <textarea name="listing[description]" class="form-control"><%=listing.description%></textarea>
-        </div>
+  <div class="row mt-5">
+    <div class="col-10 col-md-8 col-lg-6 offset-1 offset-md-2 offset-lg-3">
+      
+      <!-- Card Wrapper -->
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+          <h3 class="mb-4 text-center fw-bold text-primary">
+            ✏️ Edit Your Listing
+          </h3>
 
-        <div class="mb-3">
-        <label for="image" class="form-lable">image</label>
-        <input name="listing[image]" value="<%=listing.image%>" type="text" class="form-control">
-        </div>
+          <form method="post" action="/listings/<%= listing._id %>?_method=PUT">
+            
+            <!-- Title -->
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3" id="title" 
+                     name="listing[title]" value="<%= listing.title %>" placeholder="Title">
+              <label for="title"><i class="fa-solid fa-heading me-2"></i> Title</label>
+            </div>
 
-        <div class="row">
-        <div class="mb-3 col-md-4">
-        <label for="price" class="form-lable">price</label>
-        <input name="listing[price]" value="<%=listing.price%>" type="number" class="form-control">
-        </div>
+            <!-- Description -->
+            <div class="form-floating mb-3">
+              <textarea class="form-control rounded-3" id="description" style="height: 120px"
+                        name="listing[description]" placeholder="Description"><%= listing.description %></textarea>
+              <label for="description"><i class="fa-solid fa-align-left me-2"></i> Description</label>
+            </div>
 
-        <div class="mb-3 col-md-8">
-        <label for="country" class="form-lable">country</label>
-        <input name="listing[country]" value="<%=listing.country%>" type="text" class="form-control">
-        </div>
-        </div>
+            <!-- Image -->
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3" id="image"
+                     name="listing[image]" value="<%= listing.image %>" placeholder="Image URL">
+              <label for="image"><i class="fa-solid fa-image me-2"></i> Image URL</label>
+            </div>
 
-        <div class="mb-3">
-        <label for="location" class="form-lable">location</label>
-        <input name="listing[location]" value="<%=listing.location%>" type="text" class="form-control">
-        </div>
+            <!-- Price & Country -->
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control rounded-3" id="price"
+                         name="listing[price]" value="<%= listing.price %>" placeholder="Price">
+                  <label for="price"><i class="fa-solid fa-tag me-2"></i> Price</label>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control rounded-3" id="country"
+                         name="listing[country]" value="<%= listing.country %>" placeholder="Country">
+                  <label for="country"><i class="fa-solid fa-globe me-2"></i> Country</label>
+                </div>
+              </div>
+            </div>
 
-        <button class="btn btn-dark edit-btn mt-3">Edit</button>
-    </form>
+            <!-- Location -->
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-3" id="location"
+                     name="listing[location]" value="<%= listing.location %>" placeholder="Location">
+              <label for="location"><i class="fa-solid fa-map-marker-alt me-2"></i> Location</label>
+            </div>
+
+            <!-- Submit -->
+            <div class="d-grid">
+              <button class="btn btn-gradient fw-bold py-2 rounded-3">
+                <i class="fa-solid fa-pen-to-square me-2"></i> Update Listing
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </div>
-    </div>
+  </div>
+
+  <!-- Extra CSS -->
+  <style>
+    .btn-gradient {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      color: white;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-gradient:hover {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      transform: scale(1.05);
+      box-shadow: 0px 4px 15px rgba(0, 114, 255, 0.4);
+    }
+    .card {
+      animation: fadeInUp 0.6s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </body>

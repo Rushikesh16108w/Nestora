@@ -98,7 +98,7 @@ body{
 }
 
 .edit-btn{
-    background-color: #fe424d !important;
+    background-color: lightblue !important;
     border: none !important;
 
 }
@@ -114,4 +114,44 @@ body{
 .show-card{
     padding-left: 0;
     padding-right: 0;
+}
+.nav-link {
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ffd700 !important; /* gold highlight */
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background: #ffd700;
+  transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.social-link {
+  transition: transform 0.3s, color 0.3s;
+}
+.social-link:hover {
+  transform: scale(1.2);
+  color: #ffd700 !important; /* Gold highlight */
+}
+
+.footer-link {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-link:hover {
+  color: #ffd700; /* Gold hover */
 }
